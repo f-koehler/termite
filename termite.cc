@@ -914,9 +914,6 @@ gboolean key_press_cb(VteTerminal *vte, GdkEventKey *event, keybind_info *info) 
     }
     if (modifiers == (GDK_CONTROL_MASK|GDK_SHIFT_MASK)) {
         switch (gdk_keyval_to_lower(event->keyval)) {
-            case GDK_KEY_plus:
-                increase_font_scale(vte);
-                return TRUE;
             case GDK_KEY_t:
                 launch_in_directory(vte);
                 return TRUE;
@@ -953,10 +950,13 @@ gboolean key_press_cb(VteTerminal *vte, GdkEventKey *event, keybind_info *info) 
             case GDK_KEY_Tab:
                 overlay_show(&info->panel, overlay_mode::completion, vte);
                 return TRUE;
+            case GDK_KEY_plus:
+                increase_font_scale(vte);
+                return TRUE;
             case GDK_KEY_minus:
                 decrease_font_scale(vte);
                 return TRUE;
-            case GDK_KEY_equal:
+            case GDK_KEY_0:
                 reset_font_scale(vte, info->config.font_scale);
                 return TRUE;
             default:
